@@ -1,0 +1,21 @@
+{
+  "name": "subwayrepo",
+  "version": "1.0",
+  "description": "Click the leaf page action to see the github subrepo's commit message.",
+  "background_page": "background.html",
+  "page_action" :
+  {
+    "default_icon" : "icon.png",
+    "popup": "popup.html"
+  },
+  "permissions" : [
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": ["https://khanacademy.kilnhg.com/*"],
+      "js": ["jquery.js", "contentscript.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

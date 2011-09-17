@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script>
+		function showPageAction( request, sender, sendResponse ) {
+			// Show the page action leaf icon
+			chrome.pageAction.show( sender.tab.id );
+			// Return nothing to let the connection be cleaned up
+			sendResponse({});
+		};
+
+		// Listen for the content script to send a message
+		chrome.extension.onRequest.addListener( showPageAction );
+	</script>
+</head>
+</html>

@@ -1,0 +1,20 @@
+<script src="jquery.js"></script>
+<script src="github.js"></script>
+<script>
+chrome.tabs.getSelected( null, function( tab ) {
+	chrome.tabs.sendRequest( tab.id, {}, function handler( response ) {
+		if ( response.ghHash ) {
+			var commit = gh.commit( "khan", "khan-exercises", response.ghHash );
+			commit.show( function( data ) {
+				var jel = jQuery( "<a>" ).attr( "href", "https://github.com" + data.commit.url )
+					.attr( "target", "_blank" )
+					.html( data.commit.message );
+				jQuery( "#commit-message" ).append( jel );
+			});
+		}
+  });
+});
+</script>
+<div style="width: 300px;">
+	<p id="commit-message"></p>
+</div>
